@@ -1,0 +1,81 @@
+/*! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+@layer base {
+  body {
+    @apply bg-neutral-light text-gray-800;
+  }
+  h1 {
+    @apply text-3xl font-extrabold mb-6 text-gray-900 tracking-tight;
+  }
+  h2 {
+    @apply text-2xl font-bold mb-4 text-gray-900 tracking-tight;
+  }
+  h3 {
+    @apply text-xl font-semibold mb-3 text-gray-900;
+  }
+  a {
+    @apply text-primary hover:text-primary-dark;
+  }
+  p {
+    @apply mb-4;
+  }
+  ul, ol {
+    @apply mb-4 ml-6;
+  }
+  ul {
+    @apply list-disc;
+  }
+  ol {
+    @apply list-decimal;
+  }
+  label {
+    @apply block text-gray-700 font-medium mb-1;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  input[type="number"],
+  select,
+  textarea {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary;
+  }
+  input[type="checkbox"] {
+    @apply h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .form-group {
+    @apply mb-4;
+  }
+  .server-header {
+    @apply p-4 border-b border-gray-200;
+  }
+  .server-body {
+    @apply p-4;
+  }
+  .server-footer {
+    @apply px-4 py-3 bg-neutral-light border-t border-gray-200 flex justify-between items-center;
+  }
+}
+
+@layer utilities {
+  /* Note: These gradient styles are different from custom.css,
+     but we're keeping them as they might be used in some contexts */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+    color: white;
+  }
+
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, #9CA3AF 0%, #6B7280 100%);
+    color: white;
+  }
+}

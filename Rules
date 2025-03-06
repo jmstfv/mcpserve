@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+# A few helpful tips about the Rules file:
+#
+# * The string given to #compile and #route are matching patterns for
+#   identifiers--not for paths. Therefore, you can't match on extension.
+#
+# * The order of rules is important: for each item, only the first matching
+#   rule is applied.
+#
+# * Item identifiers start and end with a slash (e.g. "/about/" for the file
+#   "content/about.html"). To select all children, grandchildren, … of an
+#   item, use the pattern "/about/*/"; "/about/*" will also select the parent,
+#   because "*" matches zero or more characters.
+
+compile '/sitemap.erb' do
+  filter :erb
+  write '/sitemap.xml'
+end
+
+compile '/assets/css/*.css' do
+  # Don't filter or layout
+end
+
+compile '/assets/js/*.js' do
+  # Don't filter or layout
+end
+
+compile '/assets/images/*' do
+  # Don't filter or layout
+end
+
+compile '/**/*.html' do
+  filter :erb
+  layout '/default.*'
+end
+
+compile '/**/*.md' do
+  filter :kramdown
+
+  if item.identifier.to_s.start_with?('/servers/') && !item.identifier.to_s.end_with?('/index.md') && !item.identifier.to_s.end_with?('/categories.md')
+    layout '/server.*'
+  else
+    layout '/default.*'
+  end
+end
+
+compile '/**/*' do
+  write item.identifier.to_s
+end
+
+# Routes for assets
+route '/assets/**/*' do
+  # /assets/foo.css → /assets/foo.css
+  item.identifier.to_s
+end
+
+# Route for HTML files
+route '/**/*.html' do
+  if item.identifier =~ '/index.*'
+    '/index.html'
+  else
+    # Remove trailing slash for cleaner URLs
+    "#{item.identifier.without_ext}.html"
+  end
+end
+
+# Route for MD files - append -md to avoid conflicts with HTML files
+route '/**/*.md' do
+  if item.identifier =~ '/index.*'
+    '/index.html'
+  elsif item.identifier.to_s.start_with?('/servers/') && !item.identifier.to_s.end_with?('/index.md') && !item.identifier.to_s.end_with?('/categories.md')
+    # Special routing for server pages - make them available at /servers/[name]
+    "/servers/#{item.identifier.to_s.gsub('/servers/', '').gsub('.md', '')}.html"
+  else
+    "#{item.identifier.without_ext}.html"
+  end
+end
+
+layout '/**/*', :erb

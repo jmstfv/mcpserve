@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= @item[:title] %></title>
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+    <link rel="canonical" href="https://mcpserve.com<%= @item.path %>">
+    <meta name="description" content="<%= @item[:description] || 'A directory of Model Context Protocol (MCP) servers for AI assistants' %>">
+    <meta property="og:title" content="<%= @item[:title] %>">
+    <meta property="og:description" content="<%= @item[:description] || 'A directory of Model Context Protocol (MCP) servers for AI assistants' %>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mcpserve.com<%= @item.path %>">
+    <meta property="og:image" content="https://mcpserve.com/assets/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://mcpserve.com/assets/images/twitter-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MCP Server Directory",
+      "url": "https://mcpserve.com",
+      "description": "A comprehensive directory of Model Context Protocol (MCP) servers for AI assistants",
+      "publisher": {
+        "@type": "Organization",
+        "legalName": "Forty Two Technologies, Inc.",
+        "url": "https://mcpserve.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://mcpserve.com/assets/images/logo.svg"
+        },
+        "knowsAbout": [
+          "Model Context Protocol",
+          "MCP Servers",
+          "AI Assistants",
+          "Large Language Models",
+          "AI Tools"
+        ]
+      }
+    }
+    </script>
+
+    <%= content_for(@item, :head) %>
+  </head>
+  <body class="min-h-screen flex flex-col bg-neutral-light text-gray-800 font-sans antialiased">
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+      <div class="container mx-auto px-4 py-3">
+        <div class="flex items-center justify-between">
+          <a href="/" class="flex items-center space-x-2">
+            <img src="/assets/images/logo.svg" alt="MCP Servers Directory" class="h-10 w-auto">
+          </a>
+
+          <nav class="hidden md:flex items-center space-x-8">
+            <a href="/servers/" class="text-gray-700 hover:text-primary transition-colors font-medium">Servers</a>
+            <a href="/categories.html" class="text-gray-700 hover:text-primary transition-colors font-medium">Categories</a>
+            <a href="/about.html" class="text-gray-700 hover:text-primary transition-colors font-medium">About</a>
+            <a href="/submit.html" class="btn btn-action">
+              Add Your Server
+            </a>
+          </nav>
+
+          <div class="md:hidden">
+            <button id="menu-toggle" class="text-gray-600 focus:outline-none">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path id="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <path id="menu-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+        <div class="container mx-auto px-4 py-3">
+          <nav class="flex flex-col space-y-3">
+            <a href="/servers/" class="text-gray-700 hover:text-primary transition-colors py-2 font-medium">Servers</a>
+            <a href="/categories.html" class="text-gray-700 hover:text-primary transition-colors py-2 font-medium">Categories</a>
+            <a href="/about.html" class="text-gray-700 hover:text-primary transition-colors py-2 font-medium">About</a>
+            <a href="/submit.html" class="btn w-full text-center" style="background-color: #CF3919; color: white;">
+              Add Your Server
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
+
+    <%= render '/partials/_footer.html' %>
+
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

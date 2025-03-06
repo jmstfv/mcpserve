@@ -1,0 +1,234 @@
+---
+title: About Model Context Protocol (MCP)
+description: Learn about the Model Context Protocol (MCP), the open standard for AI agent interoperability. Discover how MCP solves the M×N integration problem for AI assistants.
+---
+
+<section class="py-12 bg-gradient-primary text-white">
+  <div class="container-custom">
+    <div class="max-w-3xl mx-auto text-center">
+      <h1 class="text-4xl mb-4 text-white">About Model Context Protocol</h1>
+      <p class="text-xl opacity-90">Understanding the future of AI agent interoperability</p>
+    </div>
+  </div>
+</section>
+
+<section class="py-12 bg-neutral-light">
+  <div class="container-custom">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white rounded-md shadow-md p-8 mb-8">
+        <h2 class="text-2xl text-gray-800 mb-6">What is Model Context Protocol (MCP)?</h2>
+        <div class="section-divider w-24 mb-6"></div>
+
+        <div class="prose prose-lg max-w-none">
+          <p>
+            Model Context Protocol (MCP) is an open standard developed by Anthropic that enables seamless integration between AI models and external data sources, tools, and services. It provides a standardized way for AI models like Claude to communicate with various tools, APIs, and data sources, enabling more powerful and flexible AI applications.
+          </p>
+
+          <p>
+            MCP was created to solve the "M×N problem" in AI development—the challenge of connecting multiple AI models (M) with numerous external tools and data sources (N). Without a standard protocol, each integration requires custom development work, creating an exponentially complex landscape of connections as both models and tools multiply.
+          </p>
+
+          <p>
+            With MCP, developers can create tools and services that work seamlessly with compatible AI models, allowing for consistent, reliable interactions between AI agents and external systems. This creates a more interoperable and accessible AI ecosystem for everyone, from individual developers to enterprise organizations.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-md shadow-md p-8 mb-8">
+        <h2 class="text-2xl text-gray-800 mb-6">What is an MCP Server?</h2>
+        <div class="section-divider w-24 mb-6"></div>
+
+        <div class="prose prose-lg max-w-none">
+          <p>
+            An MCP server is a program that implements the Model Context Protocol, acting as a bridge between AI models and external systems. These servers expose specific capabilities—like file access, database connections, or API integrations—to AI models in a secure, standardized way.
+          </p>
+
+          <p>
+            Think of an MCP server as a translator and gatekeeper: it understands both what the AI model needs and how to safely interact with external systems to fulfill those needs. For example, an MCP server might allow an AI assistant to query a weather API, search your email, or manage files on your computer—all while maintaining appropriate security boundaries.
+          </p>
+
+          <p>
+            MCP servers can be run locally on your device or deployed to cloud environments, depending on the specific use case and security requirements. They can be as simple as a basic file access utility or as complex as an enterprise data integration hub.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-md shadow-md p-8 mb-8">
+        <h2 class="text-2xl text-gray-800 mb-6">How MCP Servers Work</h2>
+        <div class="section-divider w-24 mb-6"></div>
+
+        <div class="prose prose-lg max-w-none">
+          <p>
+            MCP uses a client-server architecture where communication occurs through JSON-RPC messages. In this model:
+          </p>
+
+          <ul>
+            <li><strong>MCP Clients</strong> are AI applications like Claude Desktop or AI-powered development environments that need to access external tools and data.</li>
+            <li><strong>MCP Servers</strong> expose functionality through three key primitives:
+              <ul>
+                <li><strong>Resources</strong> - structured data that can be included in an AI model's context</li>
+                <li><strong>Prompts</strong> - instructions or templates that guide the AI model's behavior</li>
+                <li><strong>Tools</strong> - executable functions that an AI model can call to retrieve information or perform actions</li>
+              </ul>
+            </li>
+          </ul>
+
+          <p>
+            When an AI assistant needs information from an external system, it makes a request to the appropriate MCP server. The server processes this request, interacts with the external system according to its implementation, and returns the relevant data back to the AI in a structured format it can understand.
+          </p>
+
+          <p>
+            This standardized approach ensures that AI models can interact with various systems without needing custom integration code for each new connection. It also provides built-in security controls and a consistent developer experience across different integrations.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-md shadow-md p-8 mb-8">
+        <h2 class="text-2xl text-gray-800 mb-6">Applications of MCP Servers</h2>
+        <div class="section-divider w-24 mb-6"></div>
+
+        <div class="prose prose-lg max-w-none">
+          <p>
+            MCP servers enable a wide range of practical applications that extend the capabilities of AI assistants beyond their built-in knowledge. Some common use cases include:
+          </p>
+
+          <ul>
+            <li><strong>File and Document Management</strong> - Allowing AI assistants to read, write, and organize files on your computer</li>
+            <li><strong>Team Communication</strong> - Integrating with platforms like Slack to automate notifications and team updates</li>
+            <li><strong>Development Workflows</strong> - Connecting with code repositories through GitHub integration</li>
+            <li><strong>Data Analytics</strong> - Accessing databases and analytics platforms to generate insights</li>
+            <li><strong>Real-time Information</strong> - Retrieving current weather forecasts, cryptocurrency prices, or news updates</li>
+          </ul>
+
+          <p>
+            The versatility of MCP servers extends to niche applications as well, such as 3D printer management, home automation, and specialized research tools. As the ecosystem grows, we're seeing MCP servers being developed for increasingly diverse use cases.
+          </p>
+
+          <p>
+            Industry leaders like Block and Apollo have already integrated MCP into their systems, while development tools companies including Zed, Replit, Codeium, and Sourcegraph are working with MCP to enhance their platforms—enabling AI agents to better understand context around coding tasks.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-md shadow-md p-8 mb-8">
+        <h2 class="text-2xl text-gray-800 mb-6">Key Benefits of MCP</h2>
+        <div class="section-divider w-24 mb-6"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-neutral-light rounded-md p-6 shadow-sm">
+            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">Future-Proof Integration</h3>
+            <p class="text-gray-700">
+              Developers can build tools that work with current and future versions of Claude and other compatible models, ensuring long-term compatibility as AI technology evolves.
+            </p>
+          </div>
+
+          <div class="bg-neutral-light rounded-md p-6 shadow-sm">
+            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">Broader Ecosystem</h3>
+            <p class="text-gray-700">
+              Connect with a growing ecosystem of MCP-compatible tools and services, expanding the capabilities of your AI applications without custom integration work.
+            </p>
+          </div>
+
+          <div class="bg-neutral-light rounded-md p-6 shadow-sm">
+            <div class="w-12 h-12 bg-primary-dark rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">Standardized Security</h3>
+            <p class="text-gray-700">
+              MCP includes built-in security features and best practices, ensuring that interactions between AI models and external systems follow consistent security protocols.
+            </p>
+          </div>
+
+          <div class="bg-neutral-light rounded-md p-6 shadow-sm">
+            <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">Simplified Development</h3>
+            <p class="text-gray-700">
+              MCP solves the M×N integration problem by providing a standardized protocol, dramatically reducing the code and maintenance required to connect AI models with external tools.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-md shadow-md p-8 mb-8">
+        <h2 class="text-2xl text-gray-800 mb-6">About This Directory</h2>
+        <div class="section-divider w-24 mb-6"></div>
+
+        <div class="prose prose-lg max-w-none">
+          <p>
+            The MCP Servers Directory is a community-driven project aimed at helping developers discover servers and tools that support the Model Context Protocol. Our goal is to make it easy for AI developers to find compatible services they can integrate with their applications.
+          </p>
+
+          <p>
+            This directory is maintained by volunteers who are passionate about the AI community and the potential of MCP to create a more unified ecosystem for AI agents. We believe that developers shouldn't have to reinvent the wheel when integrating AI with external systems.
+          </p>
+
+          <p>
+            All server listings in this directory are submitted by developers or community members. We verify that each server supports MCP before adding it to our listings, ensuring that they can be used with Anthropic's Claude and other compatible models.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-md shadow-md p-8">
+        <h2 class="text-2xl text-gray-800 mb-6">Get Involved</h2>
+        <div class="section-divider w-24 mb-6"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-gray-800">For MCP Server Developers</h3>
+            <p class="text-gray-700 mb-4">
+              If you've developed a service that supports MCP, we'd love to include it in our directory. Listing your server is completely free and helps other developers discover your tool.
+            </p>
+            <a href="/submit.html" class="btn">Submit Your Server</a>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-gray-800">For Contributors</h3>
+            <p class="text-gray-700 mb-4">
+              This directory is open source and we welcome contributions. Whether you want to improve the site, add features, or help maintain the directory, your help is appreciated.
+            </p>
+            <a href="https://github.com/jmstfv/mcpserve" class="btn" target="_blank" rel="noopener noreferrer">Contribute on GitHub</a>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-gray-200">
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">Join Our Community</h3>
+          <p class="text-gray-700 mb-6">
+            Connect with other MCP enthusiasts, developers, and AI practitioners in our community. Get help, share experiences, and stay updated on the latest MCP developments.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="https://github.com/jmstfv/mcpserve" class="btn bg-gray-800 hover:bg-gray-700 inline-flex items-center" target="_blank" rel="noopener noreferrer">
+              <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+              </svg>
+              GitHub Repository
+            </a>
+
+            <a href="https://docs.anthropic.com/en/docs/agents-and-tools/mcp" class="btn bg-primary hover:bg-primary-dark inline-flex items-center" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+              MCP Documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

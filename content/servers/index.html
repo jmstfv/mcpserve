@@ -1,0 +1,257 @@
+---
+title: Browse All Model Context Protocol Servers
+description: Explore our comprehensive directory of Model Context Protocol (MCP) servers. Find the perfect tools and APIs to enhance your AI assistant's capabilities and functionality.
+---
+
+<section class="py-12 bg-gradient-primary text-white">
+  <div class="container-custom">
+    <div class="max-w-3xl mx-auto text-center">
+      <h1 class="text-4xl mb-4 text-white">MCP Servers Directory</h1>
+      <p class="text-xl opacity-90 mb-4">Browse the ecosystem of Model Context Protocol servers</p>
+    </div>
+  </div>
+</section>
+
+<section class="py-12 bg-neutral-light">
+  <div class="container-custom">
+    <!-- Search and Filters -->
+    <div class="bg-white rounded-md shadow-md p-6 mb-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <h2 class="text-2xl text-gray-800">Find Your Perfect Server</h2>
+        <div class="md:w-80">
+          <input type="text" id="server-search" placeholder="Search servers..." class="pl-12 px-4 py-2 w-full md:w-64 rounded-md shadow-sm border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Category Filter -->
+        <div>
+          <label for="category-filter" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+          <select id="category-filter" class="w-full rounded-md border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary">
+            <option value="">All Categories</option>
+            <option value="Browser Automation">Browser Automation</option>
+            <option value="Cloud Platforms">Cloud Platforms</option>
+            <option value="Databases">Databases</option>
+            <option value="Developer Tools">Developer Tools</option>
+            <option value="Knowledge & Memory">Knowledge & Memory</option>
+            <option value="Monitoring">Monitoring</option>
+            <option value="Search">Search</option>
+          </select>
+        </div>
+
+        <!-- Features Filter -->
+        <div>
+          <label for="feature-filter" class="block text-sm font-medium text-gray-700 mb-1">Server Features</label>
+          <select id="feature-filter" class="w-full rounded-md border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary">
+            <option value="">All Features</option>
+            <option value="Search and Information Retrieval">Search and Information Retrieval</option>
+            <option value="Web Scraping and Automation">Web Scraping and Automation</option>
+            <option value="API Management">API Management</option>
+            <option value="Cloud Services">Cloud Services</option>
+            <option value="Media and Entertainment">Media and Entertainment</option>
+            <option value="Database Management">Database Management</option>
+            <option value="File Management">File Management</option>
+            <option value="Data Summarization and Analysis">Data Summarization and Analysis</option>
+            <option value="Log Management">Log Management</option>
+            <option value="Project Management Tools">Project Management Tools</option>
+            <option value="Calendar and Scheduling">Calendar and Scheduling</option>
+            <option value="Communication Tools">Communication Tools</option>
+            <option value="Research Tools">Research Tools</option>
+            <option value="Documentation Search">Documentation Search</option>
+            <option value="Code Execution">Code Execution</option>
+            <option value="UI Testing">UI Testing</option>
+            <option value="Health and Fitness">Health and Fitness</option>
+            <option value="Business and Commerce">Business and Commerce</option>
+            <option value="Weather and Environmental Data">Weather and Environmental Data</option>
+            <option value="IoT and Hardware Control">IoT and Hardware Control</option>
+            <option value="Threat Intelligence">Threat Intelligence</option>
+            <option value="Vulnerability Scanning">Vulnerability Scanning</option>
+            <option value="Security Audit">Security Audit</option>
+          </select>
+        </div>
+
+        <!-- Sort By -->
+        <div>
+          <label for="sort-by" class="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+          <select id="sort-by" class="w-full rounded-md border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="name-asc">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="server-list">
+      <%
+      servers = @items.select { |i|
+        i.identifier.to_s.start_with?('/servers/') &&
+        !i.identifier.to_s.end_with?('/index.html') &&
+        !i.identifier.to_s.end_with?('/categories.md')
+      }.sort_by { |i| i[:created_at] || Date.today }.reverse
+
+      servers.each do |server|
+        server_path = server.identifier.to_s.gsub('/servers/', '').gsub('.md', '')
+      %>
+        <a href="/servers/<%= server_path %>.html" class="block group h-full">
+          <div class="bg-white rounded-md shadow-md overflow-hidden hover:shadow-lg transition-all server-card"
+               data-features="<%= (server[:features] || []).join(',') %>"
+               data-category="<%= server[:category] || '' %>"
+               data-name="<%= server[:title] %>">
+            <div class="server-card-image">
+              <% if server[:banner_image] %>
+                <img src="<%= server[:banner_image] %>" alt="<%= server[:title] %>" class="w-full h-full object-cover" />
+              <% elsif server[:logo] %>
+                <div class="absolute inset-0 flex items-center justify-center bg-white">
+                  <img src="<%= server[:logo] %>" alt="<%= server[:title] %>" class="max-h-24 max-w-[80%] object-contain" />
+                </div>
+              <% else %>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-primary text-6xl opacity-30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                    </svg>
+                  </div>
+                </div>
+              <% end %>
+              <% if server[:category] %>
+                <div class="server-category-tag">
+                  <%= server[:category] %>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="server-card-content">
+              <h3 class="server-card-title group-hover:text-primary"><%= server[:title] %></h3>
+              <p class="server-card-description"><%= server[:description] %></p>
+
+              <div class="server-card-features">
+                <% (server[:features] || []).first(3).each do |feature| %>
+                  <span class="server-tag"><%= feature %></span>
+                <% end %>
+                <% if (server[:features] || []).size > 3 %>
+                  <span class="server-tag">+<%= server[:features].size - 3 %> more</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden text-center py-16">
+      <svg class="mx-auto h-12 w-12 text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <h3 class="mt-4 text-xl font-medium text-gray-800">No servers found</h3>
+      <p class="mt-2 text-gray-600">Try adjusting your search or filters</p>
+      <button id="reset-filters" class="mt-4 btn bg-primary hover:bg-primary-dark">Reset Filters</button>
+    </div>
+
+    <div class="mt-16 bg-gradient-secondary rounded-md shadow-md p-8 text-center text-white">
+      <h2 class="text-2xl font-bold mb-4">Have You Built an MCP Server?</h2>
+      <p class="text-white opacity-90 mb-6 max-w-2xl mx-auto">
+        Share your implementation with the community and help others extend their AI capabilities. Listing your server is free and helps build the MCP ecosystem.
+      </p>
+      <a href="/submit.html" class="btn btn-action">Submit Your MCP Server</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const serverList = document.getElementById('server-list');
+    const emptyState = document.getElementById('empty-state');
+    const searchInput = document.getElementById('server-search');
+    const featureFilter = document.getElementById('feature-filter');
+    const categoryFilter = document.getElementById('category-filter');
+    const sortBy = document.getElementById('sort-by');
+    const resetFiltersBtn = document.getElementById('reset-filters');
+
+    // Filter and sort servers
+    function filterAndSortServers() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const featureValue = featureFilter.value;
+      const categoryValue = categoryFilter.value;
+      const sortValue = sortBy.value;
+
+      let visibleCount = 0;
+      const servers = Array.from(serverList.children);
+
+      servers.forEach(server => {
+        const serverName = server.querySelector('h3').textContent.toLowerCase();
+        const serverFeatures = server.firstElementChild.getAttribute('data-features').split(',');
+        const serverCategory = server.firstElementChild.getAttribute('data-category');
+
+        // Apply filters
+        let isVisible = true;
+
+        if (searchTerm && !serverName.includes(searchTerm)) {
+          isVisible = false;
+        }
+
+        if (featureValue && !serverFeatures.includes(featureValue)) {
+          isVisible = false;
+        }
+
+        if (categoryValue && serverCategory !== categoryValue) {
+          isVisible = false;
+        }
+
+        // Show/hide server
+        if (isVisible) {
+          server.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          server.classList.add('hidden');
+        }
+      });
+
+      // Sort servers
+      const sortedServers = Array.from(servers).filter(server => !server.classList.contains('hidden'));
+
+      if (sortValue === 'name-asc') {
+        sortedServers.sort((a, b) => {
+          return a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent);
+        });
+      } else if (sortValue === 'name-desc') {
+        sortedServers.sort((a, b) => {
+          return b.querySelector('h3').textContent.localeCompare(a.querySelector('h3').textContent);
+        });
+      }
+      // For newest/oldest, we rely on the initial server order
+      else if (sortValue === 'oldest') {
+        sortedServers.reverse();
+      }
+
+      // Reorder DOM
+      sortedServers.forEach(server => {
+        serverList.appendChild(server);
+      });
+
+      // Show/hide empty state
+      if (visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+      }
+    }
+
+    // Event listeners
+    searchInput.addEventListener('input', filterAndSortServers);
+    featureFilter.addEventListener('change', filterAndSortServers);
+    categoryFilter.addEventListener('change', filterAndSortServers);
+    sortBy.addEventListener('change', filterAndSortServers);
+
+    // Reset filters
+    resetFiltersBtn.addEventListener('click', function() {
+      searchInput.value = '';
+      featureFilter.value = '';
+      categoryFilter.value = '';
+      sortBy.value = 'newest';
+      filterAndSortServers();
+    });
+  });
+</script>

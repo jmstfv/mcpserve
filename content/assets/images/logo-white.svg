@@ -1,0 +1,15 @@
+<svg width="250" height="50" viewBox="0 0 300 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Larger logo with icon and text (1.5x bigger) -->
+  <g transform="translate(150, 37.5) scale(1.5)">
+    <!-- Network Graph Icon raised by 10px with 1px breathing room from text -->
+    <g transform="translate(-79, -13)">
+      <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+    </g>
+
+    <!-- Text with 1px spacing between words, maintaining horizontal position -->
+    <g transform="translate(-15, 0)">
+      <text x="0" y="5" font-family="-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, arial, sans-serif" font-weight="700" font-size="18" fill="white" text-anchor="end">MCP</text>
+      <text x="1" y="5" font-family="-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, arial, sans-serif" font-weight="500" font-size="18" fill="#e5e7eb" text-anchor="start">Serve</text>
+    </g>
+  </g>
+</svg>

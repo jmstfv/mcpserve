@@ -1,0 +1,189 @@
+---
+title: MCP Server Categories
+description: Browse Model Context Protocol (MCP) servers by category. Discover specialized AI tools for search, databases, productivity, development, and more.
+---
+
+<%
+# Get the categories from the categories.md file
+def get_category_list
+  category_file = @items.find { |i| i.identifier.to_s == '/servers/categories.md' }
+  if category_file
+    # Extract main categories and descriptions from the markdown content
+    categories = []
+    current_category = nil
+    description = nil
+
+    category_file.raw_content.each_line do |line|
+      if line.start_with?('## ')
+        if current_category && description
+          categories << { name: current_category, description: description.strip }
+        end
+        current_category = line.gsub('## ', '').strip
+        description = ""
+      elsif current_category && line.strip != "" && !line.start_with?('#') && !line.start_with?('-')
+        description += line
+      end
+    end
+
+    # Add the last category
+    if current_category && description
+      categories << { name: current_category, description: description.strip }
+    end
+
+    return categories.sort_by { |c| c[:name] }
+  else
+    return []
+  end
+end
+
+# Get servers by category
+def servers_by_category(category)
+  # Map between category names in categories.md and actual category values in server files
+  category_mapping = {
+    "Web and Internet Services" => ["Cloud Platforms", "Web Services", "Browser Automation", "Search"],
+    "Data Management" => ["Databases", "Data Access & Storage"],
+    "Productivity and Collaboration" => ["Productivity & Communication", "Productivity"],
+    "Knowledge and Memory" => ["Knowledge & Memory", "Knowledge & Research"],
+    "Development and Programming" => ["Developer Tools", "Development Tools"],
+    "Specialized Services" => ["Monitoring", "AI & Machine Learning"],
+    "Security" => ["Security"]
+  }
+
+  # Get the mapped categories or use the original if no mapping exists
+  mapped_categories = category_mapping[category] || [category]
+
+  @items.select { |i|
+    i.identifier.to_s.start_with?('/servers/') &&
+    !i.identifier.to_s.end_with?('/index.html') &&
+    !i.identifier.to_s.end_with?('/categories.md') &&
+    mapped_categories.include?(i[:category])
+  }.sort_by { |i| i[:title] }
+end
+
+# Helper method to get server path
+def server_path(server)
+  server.identifier.to_s.gsub('/servers/', '').gsub('.md', '') + '.html'
+end
+%>
+
+<section class="py-12 bg-gradient-primary text-white">
+  <div class="container-custom">
+    <div class="max-w-3xl mx-auto text-center">
+      <h1 class="text-4xl mb-4 text-white">Server Categories</h1>
+      <p class="text-xl opacity-90">Browse servers by category to find the perfect integration for your needs</p>
+    </div>
+  </div>
+</section>
+
+<% if ENV['NANOC_ENV'] == 'development' %>
+<section class="py-6 bg-gray-100">
+  <div class="container-custom">
+    <div class="bg-white p-4 rounded shadow">
+      <h3 class="text-lg font-bold mb-2">Debug Information</h3>
+      <div class="text-sm">
+        <p class="font-medium">All Server Categories:</p>
+        <ul class="list-disc pl-5">
+          <%
+            all_categories = @items.select { |i|
+              i.identifier.to_s.start_with?('/servers/') &&
+              !i.identifier.to_s.end_with?('/index.html') &&
+              !i.identifier.to_s.end_with?('/categories.md')
+            }.map { |i| i[:category] }.compact.uniq.sort
+          %>
+          <% all_categories.each do |cat| %>
+            <li><%= cat %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<section class="py-12 bg-neutral-light">
+  <div class="container-custom">
+    <div class="grid grid-cols-1 gap-12">
+      <% get_category_list.each do |category| %>
+        <div class="bg-white rounded-md shadow-md overflow-hidden">
+          <div class="p-6 border-b border-gray-200">
+            <h2 class="text-2xl text-gray-800" id="<%= category[:name].downcase.gsub(' ', '-').gsub('&', 'and') %>">
+              <%= category[:name] %>
+            </h2>
+            <p class="text-gray-600 mt-2"><%= category[:description] %></p>
+            <% if ENV['NANOC_ENV'] == 'development' %>
+              <div class="mt-2 p-2 bg-gray-100 rounded text-xs">
+                <p>Looking for servers with categories: <%= (category_mapping[category[:name]] || [category[:name]]).join(", ") %></p>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="p-6">
+            <% category_servers = servers_by_category(category[:name]) %>
+
+            <% if category_servers.any? %>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% category_servers.each do |server| %>
+                  <a href="/servers/<%= server_path(server) %>" class="block group h-full">
+                    <div class="server-card-compact">
+                      <div class="server-card-compact-image">
+                        <% if server[:logo] %>
+                          <img src="<%= server[:logo] %>" alt="<%= server[:title] %>" class="w-10 h-10 rounded" />
+                        <% else %>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                          </svg>
+                        <% end %>
+                      </div>
+                      <div class="server-card-compact-content">
+                        <h3 class="server-card-compact-title group-hover:text-blue-600"><%= server[:title] %></h3>
+                        <p class="server-card-compact-description"><%= server[:description] %></p>
+                        <% if server[:features] && server[:features].any? %>
+                          <div class="mt-2 flex flex-wrap gap-1">
+                            <% server[:features].first(2).each do |feature| %>
+                              <span class="server-tag">
+                                <%= feature %>
+                              </span>
+                            <% end %>
+                            <% if server[:features].size > 2 %>
+                              <span class="server-tag">
+                                +<%= server[:features].size - 2 %> more
+                              </span>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <% if ENV['NANOC_ENV'] == 'development' %>
+                          <p class="text-xs text-gray-400 mt-1">Category: <%= server[:category] %></p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </a>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="text-center py-8">
+                <p class="text-gray-500">No servers in this category yet.</p>
+                <a href="/submit.html" class="mt-4 inline-block btn bg-primary hover:bg-primary-dark">Submit Your Server</a>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Category Navigation -->
+<section class="py-8 bg-white">
+  <div class="container-custom">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Quick Navigation</h2>
+
+    <div class="flex flex-wrap gap-3">
+      <% get_category_list.each do |category| %>
+        <a href="#<%= category[:name].downcase.gsub(' ', '-').gsub('&', 'and') %>" class="px-4 py-2 bg-neutral-light rounded-md text-gray-700 hover:bg-primary hover:text-white transition-colors">
+          <%= category[:name] %>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</section>
+

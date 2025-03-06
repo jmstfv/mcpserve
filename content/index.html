@@ -1,0 +1,188 @@
+---
+title: Model Context Protocol (MCP) Directory
+description: Discover and connect with Model Context Protocol (MCP) servers that expand your AI agent's capabilities. Browse our curated directory of tools, APIs, and services for AI assistants.
+---
+
+<!-- Hero Section -->
+<section class="bg-gradient-primary text-white py-16 md:py-20 rounded-b-lg shadow-sm">
+  <div class="container-custom">
+    <div class="max-w-3xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl mb-6 text-white">The MCP Directory</h1>
+      <p class="text-xl opacity-90 mb-8">Discover Model Context Protocol servers that expand your AI's capabilities.</p>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/servers/" class="btn btn-secondary">Browse All Servers</a>
+        <a href="/submit.html" class="btn btn-action">Submit Your Server</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Servers Section -->
+<section class="py-16 bg-neutral-light">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800">Featured MCP Servers</h2>
+      <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Connect your AI models with these powerful MCP implementations</p>
+      <div class="section-divider mx-auto w-24"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <% featured_servers.each do |server| %>
+        <a href="/servers/<%= server_path(server) %>" class="block group h-full">
+          <div class="bg-white rounded-md shadow-md overflow-hidden hover:shadow-lg transition-all server-card"
+               data-features="<%= (server[:features] || []).join(',') %>"
+               data-category="<%= server[:category] || '' %>"
+               data-name="<%= server[:title] %>">
+            <div class="server-card-image">
+              <% if server[:banner_image] %>
+                <img src="<%= server[:banner_image] %>" alt="<%= server[:title] %>" class="w-full h-full object-cover" />
+              <% elsif server[:logo] %>
+                <div class="absolute inset-0 flex items-center justify-center bg-white">
+                  <img src="<%= server[:logo] %>" alt="<%= server[:title] %>" class="max-h-24 max-w-[80%] object-contain" />
+                </div>
+              <% else %>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-primary text-6xl opacity-30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                    </svg>
+                  </div>
+                </div>
+              <% end %>
+              <% if server[:category] %>
+                <div class="server-category-tag">
+                  <%= server[:category] %>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="server-card-content">
+              <h3 class="server-card-title group-hover:text-primary"><%= server[:title] %></h3>
+              <p class="server-card-description"><%= server[:description] %></p>
+
+              <div class="server-card-features">
+                <% (server[:features] || []).first(3).each do |feature| %>
+                  <span class="server-tag"><%= feature %></span>
+                <% end %>
+                <% if (server[:features] || []).size > 3 %>
+                  <span class="server-tag">+<%= server[:features].size - 3 %> more</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="/servers/" class="btn">View All Servers</a>
+    </div>
+  </div>
+</section>
+
+<!-- MCP Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800">Why Model Context Protocol?</h2>
+      <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Solving the M×N problem with a standardized approach to AI integration</p>
+      <div class="section-divider mx-auto w-24"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-6 bg-neutral-light rounded-lg shadow-sm">
+        <div class="text-primary text-4xl mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Universal Connectivity</h3>
+        <p class="text-gray-600">Connect your AI models with diverse data sources and tools through a standardized protocol instead of custom integrations for each connection.</p>
+      </div>
+
+      <div class="p-6 bg-neutral-light rounded-lg shadow-sm">
+        <div class="text-primary text-4xl mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Secure & Open</h3>
+        <p class="text-gray-600">MCP enables secure, bidirectional communication between AI models and external tools with an open-source approach that promotes community innovation.</p>
+      </div>
+
+      <div class="p-6 bg-neutral-light rounded-lg shadow-sm">
+        <div class="text-primary text-4xl mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Modular Architecture</h3>
+        <p class="text-gray-600">Leverage MCP's client-server architecture and JSON-RPC messaging to build modular, context-aware AI applications with standardized primitives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recent Servers Section -->
+<section class="py-16 bg-neutral-light">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800">Recently Added</h2>
+      <p class="text-gray-600 mt-2 max-w-2xl mx-auto">The newest MCP servers in our directory</p>
+      <div class="section-divider mx-auto w-24"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <% recent_servers.each do |server| %>
+        <a href="/servers/<%= server_path(server) %>" class="block group h-full">
+          <div class="bg-white rounded-md shadow-md overflow-hidden hover:shadow-lg transition-all server-card"
+               data-features="<%= (server[:features] || []).join(',') %>"
+               data-category="<%= server[:category] || '' %>"
+               data-name="<%= server[:title] %>">
+            <div class="server-card-image">
+              <% if server[:banner_image] %>
+                <img src="<%= server[:banner_image] %>" alt="<%= server[:title] %>" class="w-full h-full object-cover" />
+              <% elsif server[:logo] %>
+                <div class="absolute inset-0 flex items-center justify-center bg-white">
+                  <img src="<%= server[:logo] %>" alt="<%= server[:title] %>" class="max-h-24 max-w-[80%] object-contain" />
+                </div>
+              <% else %>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-primary text-6xl opacity-30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                    </svg>
+                  </div>
+                </div>
+              <% end %>
+              <% if server[:category] %>
+                <div class="server-category-tag">
+                  <%= server[:category] %>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="server-card-content">
+              <h3 class="server-card-title group-hover:text-primary"><%= server[:title] %></h3>
+              <p class="server-card-description"><%= server[:description] %></p>
+
+              <div class="server-card-features">
+                <% (server[:features] || []).first(3).each do |feature| %>
+                  <span class="server-tag"><%= feature %></span>
+                <% end %>
+                <% if (server[:features] || []).size > 3 %>
+                  <span class="server-tag">+<%= server[:features].size - 3 %> more</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="/servers/" class="btn">View All Servers</a>
+    </div>
+  </div>
+</section>

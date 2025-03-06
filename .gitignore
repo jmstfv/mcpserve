@@ -1,0 +1,13 @@
+# Nanoc output
+output/
+tmp/
+.cache/
+
+# Node modules
+/node_modules
+
+# Logs
+*.log
+
+# OS specific files
+.DS_Store
