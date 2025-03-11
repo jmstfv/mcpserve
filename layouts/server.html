@@ -40,13 +40,6 @@
       <% if @item[:category] %>
       "applicationSubCategory": "<%= @item[:category] %>",
       <% end %>
-      <% if @item[:features] && @item[:features].any? %>
-      "featureList": [
-        <% @item[:features].each_with_index do |feature, index| %>
-        "<%= feature %>"<%= index < @item[:features].length - 1 ? ',' : '' %>
-        <% end %>
-      ],
-      <% end %>
       <% if @item[:logo] %>
       "image": "<%= @item[:logo] %>",
       <% elsif @item[:banner_image] %>
