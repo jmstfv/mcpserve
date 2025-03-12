@@ -35,9 +35,7 @@ description: Discover and connect with Model Context Protocol (MCP) servers that
                data-category="<%= server[:category] || '' %>"
                data-name="<%= server[:title] %>">
             <div class="server-card-image">
-              <% if server[:banner_image] %>
-                <img src="<%= server[:banner_image] %>" alt="<%= server[:title] %>" class="w-full h-full object-cover" />
-              <% elsif server[:logo] %>
+              <% if server[:logo] %>
                 <div class="absolute inset-0 flex items-center justify-center bg-white">
                   <img src="<%= server[:logo] %>" alt="<%= server[:title] %>" class="max-h-24 max-w-[80%] object-contain" />
                 </div>
@@ -141,9 +139,7 @@ description: Discover and connect with Model Context Protocol (MCP) servers that
                data-category="<%= server[:category] || '' %>"
                data-name="<%= server[:title] %>">
             <div class="server-card-image">
-              <% if server[:banner_image] %>
-                <img src="<%= server[:banner_image] %>" alt="<%= server[:title] %>" class="w-full h-full object-cover" />
-              <% elsif server[:logo] %>
+              <% if server[:logo] %>
                 <div class="absolute inset-0 flex items-center justify-center bg-white">
                   <img src="<%= server[:logo] %>" alt="<%= server[:title] %>" class="max-h-24 max-w-[80%] object-contain" />
                 </div>

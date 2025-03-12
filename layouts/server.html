@@ -44,9 +44,7 @@
       "applicationSubCategory": "<%= @item[:category] %>",
       <% end %>
       <% if @item[:logo] %>
-      "image": "<%= @item[:logo] %>",
-      <% elsif @item[:banner_image] %>
-      "image": "<%= @item[:banner_image] %>",
+      "image": "https://mcpserve.com<%= @item[:logo] %>",
       <% end %>
       <% if @item[:website_url] || @item[:github_url] || @item[:documentation_url] %>
       "sameAs": [
@@ -161,9 +159,7 @@
             <div class="flex flex-col gap-6">
               <!-- Logo -->
               <div class="bg-white p-6 rounded-lg shadow-md w-full md:w-64 h-64 flex items-center justify-center">
-                <% if @item[:banner_image] %>
-                  <img src="<%= @item[:banner_image] %>" alt="<%= @item[:title] %>" class="max-w-full max-h-full" />
-                <% elsif @item[:logo] %>
+                <% if @item[:logo] %>
                   <img src="<%= @item[:logo] %>" alt="<%= @item[:title] %>" class="max-w-full max-h-full object-contain" />
                 <% else %>
                   <div class="text-primary text-6xl opacity-50">
