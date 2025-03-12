@@ -9,12 +9,12 @@
     <link rel="icon" href="/assets/images/favicon.png" type="image/png">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
-    <link rel="canonical" href="https://mcpserve.com<%= @item.path %>">
+    <link rel="canonical" href="https://mcpserve.com<%= create_canonical_path(@item[:filename]) %>">
     <meta name="description" content="<%= @item[:description] %>">
     <meta property="og:title" content="<%= @item[:title] %>">
     <meta property="og:description" content="<%= @item[:description] %>">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mcpserve.com/servers/<%= @item.identifier.to_s.gsub('/servers/', '').gsub('.md', '') %>">
+    <meta property="og:url" content="https://mcpserve.com<%= create_canonical_path(@item[:filename]) %>">
     <meta property="og:image" content="https://mcpserve.com/assets/images/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcpserve.com/assets/images/twitter-image.png">
@@ -59,7 +59,7 @@
         <% end %>
       ],
       <% end %>
-      "url": "https://mcpserve.com<%= @item.path %>",
+      "url": "https://mcpserve.com<%= create_canonical_path(@item[:filename]) %>",
       "provider": {
         "@type": "Organization",
         "name": "MCP Server Directory",
