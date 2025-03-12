@@ -12,6 +12,7 @@ github_url: https://github.com/JetBrains/mcp-jetbrains
 website_url: https://www.jetbrains.com/
 logo: /assets/images/logos/jetbrains.svg
 license: Apache 2.0
+free: true
 ---
 
 ## Overview

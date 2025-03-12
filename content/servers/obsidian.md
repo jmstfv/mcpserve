@@ -11,6 +11,7 @@ updated_at: 2025-03-12
 github_url: https://github.com/cyanheads/obsidian-mcp-server
 website_url: https://obsidian.md/
 license: Apache 2.0
+free: true
 ---
 
 ## Overview

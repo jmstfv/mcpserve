@@ -11,6 +11,7 @@ updated_at: 2025-03-12
 github_url: https://github.com/browserbase/mcp-server-browserbase
 website_url: https://browserbase.com/
 license: MIT
+free: true
 ---
 
 ## Overview

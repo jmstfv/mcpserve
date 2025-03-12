@@ -13,6 +13,7 @@ github_url: https://github.com/cloudflare/mcp-server-cloudflare
 website_url: https://www.cloudflare.com/
 logo: /assets/images/logos/cloudflare.svg
 license: Apache 2.0
+free: true
 ---
 
 ## Overview

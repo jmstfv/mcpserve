@@ -11,6 +11,7 @@ created_at: 2025-03-05
 updated_at: 2025-03-12
 github_url: https://github.com/MindscapeHQ/mcp-server-raygun
 website_url: https://raygun.com/
+free: true
 ---
 
 ## Overview

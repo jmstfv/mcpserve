@@ -11,6 +11,7 @@ updated_at: 2025-03-12
 github_url: https://github.com/neondatabase/mcp-server-neon
 website_url: https://neon.tech/
 license: MIT
+free: true
 ---
 
 ## Overview

@@ -10,6 +10,7 @@ created_at: 2025-03-05
 updated_at: 2025-03-12
 github_url: https://github.com/fatwang2/search1api-mcp
 website_url: https://search1api.com/
+free: true
 ---
 
 ## Overview

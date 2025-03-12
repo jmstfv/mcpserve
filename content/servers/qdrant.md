@@ -11,6 +11,7 @@ updated_at: 2025-03-12
 github_url: https://github.com/qdrant/mcp-server-qdrant
 website_url: https://qdrant.tech/
 license: Apache 2.0
+free: true
 ---
 
 ## Overview

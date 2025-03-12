@@ -11,6 +11,7 @@ updated_at: 2025-03-12
 github_url: https://github.com/exa-labs/exa-mcp-server
 website_url: https://exa.ai/
 logo: /assets/images/logos/exa.jpg
+free: true
 ---
 
 ## Overview

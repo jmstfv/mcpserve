@@ -11,6 +11,7 @@ updated_at: 2025-03-12
 github_url: https://github.com/tinybirdco/mcp-tinybird
 website_url: https://www.tinybird.co/
 license: Apache 2.0
+free: true
 ---
 
 ## Overview

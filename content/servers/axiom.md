@@ -14,6 +14,7 @@ github_url: https://github.com/axiomhq/mcp-server-axiom
 website_url: https://axiom.co/
 logo: /assets/images/logos/axiom.svg
 license: MIT
+free: true
 ---
 
 ## Overview

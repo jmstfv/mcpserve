@@ -57,7 +57,7 @@
       <% end %>
       "url": "https://mcpserve.com<%= create_canonical_path(@item[:filename]) %>",
       "inLanguage": "en",
-      "isAccessibleForFree": true,
+      "isAccessibleForFree": <%= @item[:free] ? 'true' : 'false' %>,
       "publisher": {
         "@type": "Organization",
         "name": "MCP Server Directory",

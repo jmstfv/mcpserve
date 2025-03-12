@@ -12,6 +12,7 @@ github_url: https://github.com/metoro-io/metoro-mcp-server
 website_url: https://metoro.io/
 logo: /assets/images/logos/metoro.svg
 license: MIT
+free: true
 ---
 
 ## Overview

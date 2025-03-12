@@ -13,6 +13,7 @@ github_url: https://github.com/stripe/agent-toolkit
 website_url: https://stripe.com/
 logo: /assets/images/logos/stripe.svg
 license: MIT
+free: true
 ---
 
 ## Overview
