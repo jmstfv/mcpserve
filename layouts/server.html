@@ -18,6 +18,11 @@
     <meta property="og:image" content="https://mcpserve.com/assets/images/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcpserve.com/assets/images/twitter-image.png">
+
+    <link rel="stylesheet" href="/assets/css/highlight.css">
+    <script src="/assets/js/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -26,16 +31,14 @@
       "description": "<%= @item[:description] %>",
       "applicationCategory": "MCP Server",
       "operatingSystem": "Cross-platform",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
       <% if @item[:license] %>
       "license": "<%= @item[:license] %>",
       <% end %>
-      <% if @item[:created_at].respond_to?(:strftime) %>
-      "datePublished": "<%= @item[:created_at].strftime('%Y-%m-%d') %>",
+      <% if @item[:created_at] %>
+      "dateCreated": "<%= @item[:created_at].strftime('%Y-%m-%d') %>",
+      <% end %>
+      <% if @item[:updated_at] %>
+      "dateModified": "<%= @item[:updated_at].strftime('%Y-%m-%d') %>",
       <% end %>
       <% if @item[:category] %>
       "applicationSubCategory": "<%= @item[:category] %>",
@@ -180,9 +183,9 @@
 
                 <div class="space-y-3">
                   <div class="flex justify-between">
-                    <span class="text-white opacity-80">Added</span>
+                    <span class="text-white opacity-80">Updated</span>
                     <span class="text-white font-medium">
-                      <%= @item[:created_at].strftime('%B %-d, %Y') if @item[:created_at].respond_to?(:strftime) %>
+                      <time datetime="<%= @item[:updated_at].strftime('%Y-%m-%d') || @item[:created_at].strftime('%Y-%m-%d') %>"></time><%= @item[:updated_at].strftime('%B %-d, %Y') || @item[:created_at].strftime('%B %-d, %Y') %></time>
                     </span>
                   </div>
 
