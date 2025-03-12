@@ -27,10 +27,9 @@
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "<%= @item[:title] %>",
+      "name": "<%= @item[:title] %> MCP",
       "description": "<%= @item[:description] %>",
       "applicationCategory": "MCP Server",
-      "operatingSystem": "Cross-platform",
       <% if @item[:license] %>
       "license": "<%= @item[:license] %>",
       <% end %>
@@ -51,18 +50,29 @@
         <% urls = [] %>
         <% urls << @item[:website_url] if @item[:website_url] %>
         <% urls << @item[:github_url] if @item[:github_url] %>
-        <% urls << @item[:documentation_url] if @item[:documentation_url] %>
         <% urls.each_with_index do |url, index| %>
         "<%= url %>"<%= index < urls.length - 1 ? ',' : '' %>
         <% end %>
       ],
       <% end %>
       "url": "https://mcpserve.com<%= create_canonical_path(@item[:filename]) %>",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
       "publisher": {
         "@type": "Organization",
         "name": "MCP Server Directory",
         "url": "https://mcpserve.com",
         "legalName": "Forty Two Technologies, Inc."
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "<%= @item[:title] %>",
+        "url": "<%= @item[:website_url] %>"
+      },
+      "copyrightHolder": {
+        "@type": "Organization",
+        "name": "<%= @item[:title] %>",
+        "url": "<%= @item[:website_url] %>"
       }
     }
     </script>
